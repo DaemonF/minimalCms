@@ -15,10 +15,10 @@ foreach($db->query("SELECT * FROM config") as $row){
 	<title><?= $config['title'] ?></title>
 	<link rel="stylesheet" type="text/css" href="media/style.css">
 </head>
-<body>
+<body class="wide">
 
 	<div id="wrapper">
-		<div id="leftCol">
+		<div id="navbar">
 			<div id="branding">
 				<h1><?= $config['brandingHeader'] ?></h1>
 			</div>
@@ -26,7 +26,7 @@ foreach($db->query("SELECT * FROM config") as $row){
 				<?php require_once('nav.php') ?>
 			</div>
 		</div>
-	
+
 		<div id="contentWrapper">
 			<div id="content">
 				<?php
@@ -46,16 +46,26 @@ foreach($db->query("SELECT * FROM config") as $row){
 
 		function load(name){
 			$.get("content.php?name="+name, function(content){
-				$('#content').hide('blind', {direction: 'left'}, animSpeed, function(){
+				//$('#content').hide('blind', {direction: 'left'}, animSpeed, function(){
 					$('#content').html(content);
-					$('#content').show('blind', {direction: 'left'}, animSpeed);
-				});
+					//$('#content').show('blind', {direction: 'left'}, animSpeed);
+				//});
 			});
 			$('.currentPage').removeClass("currentPage");
 			$('a[name="'+name+'"]').addClass("currentPage");
 		}
 
 		$(function(){
+			$(window).resize(function(){
+				if($(window).width() < 800){
+					$('body').removeClass("wide");
+					$('body').addClass("narrow");
+				} else {
+					$('body').removeClass("narrow");
+					$('body').addClass("wide");
+				}
+			});
+
 			$('a[name="<?= $_GET['name'] ?>"]').addClass("currentPage");
 
 			$('a').click(function(event){ event.preventDefault(); load(this.name); });

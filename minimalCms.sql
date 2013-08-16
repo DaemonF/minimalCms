@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 15, 2013 at 10:47 PM
+-- Generation Time: Aug 15, 2013 at 10:55 PM
 -- Server version: 5.5.32-MariaDB-log
 -- PHP Version: 5.4.17
 
@@ -56,6 +56,6 @@ CREATE TABLE IF NOT EXISTS `nav` (
   `name` varchar(100) NOT NULL,
   `parent` varchar(100) NOT NULL DEFAULT 'root',
   `text` varchar(100) NOT NULL,
-  `order` int(11) NOT NULL,
+  `sequence` int(11) NOT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

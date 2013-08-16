@@ -21,7 +21,7 @@
 
 	eval($row['content']."\r\n"); # Newline for heredoc issues
 
-	echo "<h2>".$row['title']."</h2>";
+	echo "<h2 id='contentTitle'>".$row['title']."</h2>";
 
 	require_once('templates/'.$row['template'].'.php');
 ?>
